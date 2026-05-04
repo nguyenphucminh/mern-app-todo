@@ -27,9 +27,9 @@ jobs:
             # # cd mern-app-todo
 
             echo "== Inject environment variables =="
-            export MONGO_URI="${{ secrets.MONGO_URI }}"
-            export JWT_SECRET="${{ secrets.JWT_SECRET }}"
-            export PORT="${{secrets.PORT }}"
+            echo "MONGO_URI=${{ secrets.MONGO_URI }}" >> .env
+            echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
+            echo "PORT=${{ secrets.PORT }}" >> .env
 
             # echo "== Docker compose down =="
             # docker-compose down
