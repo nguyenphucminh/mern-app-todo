@@ -18,13 +18,13 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SERVER_PORT }}
           script: |
-            cd /root/mern-todo-app
+            cd /root/mern-app-todo
 
             echo "== Pull latest code =="
             # git pull origin main
 
             # # echo "== Go to project folder =="
-            # # cd mern-todo-app
+            # # cd mern-app-todo
 
             echo "== Inject environment variables =="
             export MONGO_URI="${{ secrets.MONGO_URI }}"
