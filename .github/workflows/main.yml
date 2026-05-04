@@ -29,7 +29,7 @@ jobs:
             echo "== Inject environment variables =="
             export MONGO_URI="${{ secrets.MONGO_URI }}"
             export JWT_SECRET="${{ secrets.JWT_SECRET }}"
-            export PORT=${{secrets.PORT }}"
+            export PORT="${{secrets.PORT }}"
 
             # echo "== Docker compose down =="
             # docker-compose down
