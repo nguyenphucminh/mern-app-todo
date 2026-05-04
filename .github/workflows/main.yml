@@ -27,7 +27,7 @@ jobs:
             # # cd mern-app-todo
 
             echo "== Inject environment variables =="
-            echo "MONGO_URI=${{ secrets.MONGO_URI }}" >> .env
+            echo "MONGO_URI=${{ secrets.MONGO_URI }}" > .env
             echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
             echo "PORT=${{ secrets.PORT }}" >> .env
 
