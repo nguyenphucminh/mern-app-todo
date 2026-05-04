@@ -1,0 +1,41 @@
+name: Deploy MERN APP TODO
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: CICD_DIGITAL_OCEAN
+    steps:
+      - name: Deploy to server via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: ${{ secrets.SERVER_PORT }}
+          script: |
+            cd /root/mern-todo-app
+
+            echo "== Pull latest code =="
+            # git pull origin main
+
+            # # echo "== Go to project folder =="
+            # # cd mern-todo-app
+
+            echo "== Inject environment variables =="
+            export MONGO_URI="${{ secrets.MONGO_URI }}"
+            export JWT_SECRET="${{ secrets.JWT_SECRET }}"
+            export PORT=${{secrets.PORT }}"
+
+            # echo "== Docker compose down =="
+            # docker-compose down
+
+            # echo "== Docker compose build =="
+            # docker-compose build
+
+            # echo "== Docker compose up -d =="
+            # docker-compose up -d

@@ -18,9 +18,9 @@ services:
     depends_on:
       - mongo
     environment:
-      MONGO_URI: mongodb://mongo:27017/todo
-      PORT: 8000
-      JWT_SECRET: BI_MAT
+      - MONGO_URI
+      - PORT
+      - JWT_SECRET
     restart: unless-stopped
 
   frontend:
