@@ -8,7 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: CICD_DIGITAL_OCEAN
+    environment: MERN_ENV
     steps:
       - name: Deploy to server via SSH
         uses: appleboy/ssh-action@v1.0.3
