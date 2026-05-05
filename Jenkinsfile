@@ -16,13 +16,13 @@ pipeline {
                     string(credentialsId: 'REACT_APP_BE_API_URL', variable: 'REACT_APP_BE_API_URL'),
 
                     sshUserPrivateKey(
-                        credentialsId: 'SERVER_SSH_KEY',
+                        credentialsId: 'ssh-key-mern',
                         keyFileVariable: 'SSH_KEY',
-                        usernameVariable: 'SERVER_USER'
+                        usernameVariable: 'SSH_USER'
                     )
                 ]) {
                     sh '''
-                        ssh -o StrictHostKeyChecking=no -i ${SSH_KEY} ${SSH_USER}@${VPS_IP} "
+                        ssh -o StrictHostKeyChecking=no -i ${SSH_KEY} ${SSH_USER}@${SERVER_HOST} "
                         cd ${DEPLOY_PATH} && \
                         git pull origin main && \
 
