@@ -27,7 +27,7 @@ jobs:
             echo "== Create root .env for docker compose =="
             cat > .env << EOF
             MONGO_URI=${{ secrets.MONGO_URI }}
-            PORT=${{ secrets.PORT }}
+            PORT_BE=${{ secrets.PORT_BE }}
             JWT_SECRET=${{ secrets.JWT_SECRET }}
             REACT_APP_BE_API_URL=${{ secrets.REACT_APP_BE_API_URL }}
             EOF

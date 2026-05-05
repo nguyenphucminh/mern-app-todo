@@ -10,7 +10,7 @@ import forgotPasswordRouter from "./routes/forgotPassword.js"
 //app config
 dotenv.config()
 const app = express()
-const port = process.env.PORT
+const port = process.env.PORT_BE
 mongoose.set('strictQuery', true);
 
 //middlewares
