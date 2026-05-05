@@ -19,7 +19,7 @@ services:
       - mongo
     environment:
       MONGO_URI: ${MONGO_URI}
-      PORT: ${PORT}
+      PORT_BE: ${PORT_BE}
       JWT_SECRET: ${JWT_SECRET}
     restart: unless-stopped
 
