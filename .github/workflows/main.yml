@@ -24,10 +24,10 @@ jobs:
             git pull origin main
 
             echo "== Docker compose down =="
-            docker compose down
+            docker-compose down
 
             echo "== Docker compose build =="
-            docker compose build
+            docker-compose build
 
             echo "== Docker compose up -d =="
-            docker compose up -d
+            docker-compose up -d
