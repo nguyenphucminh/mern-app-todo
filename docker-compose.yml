@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   mongo:
@@ -18,13 +18,16 @@ services:
     depends_on:
       - mongo
     environment:
-      - MONGO_URI
-      - PORT
-      - JWT_SECRET
+      MONGO_URI: ${MONGO_URI}
+      PORT: ${PORT}
+      JWT_SECRET: ${JWT_SECRET}
     restart: unless-stopped
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      args:
+        REACT_APP_BE_API_URL: ${REACT_APP_BE_API_URL}
     ports:
       - "5000:5000"
     depends_on:

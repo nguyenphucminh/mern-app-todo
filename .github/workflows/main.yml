@@ -9,6 +9,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     environment: MERN_ENV
+
     steps:
       - name: Deploy to server via SSH
         uses: appleboy/ssh-action@v1.0.3
@@ -23,11 +24,22 @@ jobs:
             echo "== Pull latest code =="
             git pull origin main
 
+            echo "== Create root .env for docker compose =="
+            cat > .env << EOF
+            MONGO_URI=${{ secrets.MONGO_URI }}
+            PORT=${{ secrets.PORT }}
+            JWT_SECRET=${{ secrets.JWT_SECRET }}
+            REACT_APP_BE_API_URL=${{ secrets.REACT_APP_BE_API_URL }}
+            EOF
+
             echo "== Docker compose down =="
             docker-compose down
 
             echo "== Docker compose build =="
-            docker-compose build
+            docker-compose build --no-cache
 
             echo "== Docker compose up -d =="
             docker-compose up -d
+
+            echo "== Clean unused images =="
+            docker image prune -f
