@@ -36,7 +36,7 @@ function Task({ task, id }) {
                         task?.createdAt ? (
                             <p>{moment(task.createdAt).fromNow()}</p>
                         ) : (
-                            <p>just now</p>
+                            <p>just now 123</p>
                         )
                     }
                 </div>
