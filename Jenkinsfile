@@ -26,12 +26,11 @@ pipeline {
                         cd ${DEPLOY_PATH} && \
                         git pull origin main && \
 
-                        cat > .env << EOF
-                        MONGO_URI=${MONGO_URI}
-                        PORT_BE=${PORT_BE}
-                        JWT_SECRET=${JWT_SECRET}
-                        REACT_APP_BE_API_URL=${REACT_APP_BE_API_URL}
-                        EOF
+                        printf '%s\n' \
+                        "MONGO_URI=${MONGO_URI}" \
+                        "PORT_BE=${PORT_BE}" \
+                        "JWT_SECRET=${JWT_SECRET}" \
+                        "REACT_APP_BE_API_URL=${REACT_APP_BE_API_URL}" > .env && \
 
                         docker-compose down && \
                         docker-compose build && \
