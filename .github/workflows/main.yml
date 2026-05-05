@@ -21,25 +21,25 @@ jobs:
           script: |
             cd /root/mern-app-todo
 
-            echo "== Pull latest code =="
-            git pull origin main
+            # echo "== Pull latest code =="
+            # git pull origin main
 
-            echo "== Create root .env for docker compose =="
-            cat > .env << EOF
-            MONGO_URI=${{ secrets.MONGO_URI }}
-            PORT_BE=${{ secrets.PORT_BE }}
-            JWT_SECRET=${{ secrets.JWT_SECRET }}
-            REACT_APP_BE_API_URL=${{ secrets.REACT_APP_BE_API_URL }}
-            EOF
+            # echo "== Create root .env for docker compose =="
+            # cat > .env << EOF
+            # MONGO_URI=${{ secrets.MONGO_URI }}
+            # PORT_BE=${{ secrets.PORT_BE }}
+            # JWT_SECRET=${{ secrets.JWT_SECRET }}
+            # REACT_APP_BE_API_URL=${{ secrets.REACT_APP_BE_API_URL }}
+            # EOF
 
-            echo "== Docker compose down =="
-            docker-compose down
+            # echo "== Docker compose down =="
+            # docker-compose down
 
-            echo "== Docker compose build =="
-            docker-compose build --no-cache
+            # echo "== Docker compose build =="
+            # docker-compose build --no-cache
 
-            echo "== Docker compose up -d =="
-            docker-compose up -d
+            # echo "== Docker compose up -d =="
+            # docker-compose up -d
 
-            echo "== Clean unused images =="
-            docker image prune -f
+            # echo "== Clean unused images =="
+            # docker image prune -f
