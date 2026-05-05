@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
- 
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -21,16 +21,13 @@ jobs:
             cd /root/mern-app-todo
 
             echo "== Pull latest code =="
-            # git pull origin main
+            git pull origin main
 
-            # # echo "== Go to project folder =="
-            # # cd mern-app-todo
+            echo "== Docker compose down =="
+            docker compose down
 
-            # echo "== Docker compose down =="
-            # docker-compose down
+            echo "== Docker compose build =="
+            docker compose build --no-cache
 
-            # echo "== Docker compose build =="
-            # docker-compose build
-
-            # echo "== Docker compose up -d =="
-            # docker-compose up -d
+            echo "== Docker compose up -d =="
+            docker compose up -d --force-recreate
