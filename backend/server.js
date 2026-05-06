@@ -18,7 +18,8 @@ app.use(express.json())
 app.use(cors())
 
 //db config
-mongoose.connect(process.env.MONGO_URI, {
+const mongoURI = process.env.MONGO_URI || "mongodb://localhost:27017/todo-app"
+mongoose.connect(mongoURI, {
     useNewUrlParser: true,
 }, (err) => {
     if (err) {

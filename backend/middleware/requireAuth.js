@@ -6,7 +6,8 @@ const requireAuth = async (req, res, next) => {
     }
     const token = authorization.split(' ')[1]+"";
     try {
-        const decoded =  jwt.verify(token, process.env.JWT_SECRET);
+        const tokensecret = process.env.JWT_SECRET || "secret"
+        const decoded =  jwt.verify(token, tokensecret);
         req.user = decoded;
         req.token = token;
         next();
