@@ -1,0 +1,45 @@
+- name: Cai dat VPS
+  hosts: danh_sach_host
+  become: true
+
+  tasks:
+    - name: Cai docker
+      apt:
+        name: docker.io
+        state: present
+        update_cache: yes
+
+    - name: Cai docker-compose
+      shell: curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose
+
+    - name: Phan quyen docker-compose
+      shell: chmod +x /usr/bin/docker-compose
+
+    - name: Clone project
+      git:
+        repo: https://github.com/nguyenphucminh/mern-app-todo.git
+        dest: /opt/mern-app-todo
+        version: main
+
+    - name: Chay docker-compose
+      command: docker-compose up -d
+      args:
+        chdir: /opt/mern-app-todo
+
+    - name: Kiem tra container dang chay
+      command: docker ps
+      register: docker_status
+
+    - name: In trang thai container
+      debug:
+        var: docker_status.stdout
+
+    - name: Lay log container
+      command: docker-compose logs --tail=50
+      args:
+        chdir: /opt/mern-app-todo
+      register: app_logs
+
+    - name: In log ung dung
+      debug:
+        var: app_logs.stdout
