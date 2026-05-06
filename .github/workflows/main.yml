@@ -36,10 +36,7 @@ jobs:
             docker-compose down
 
             echo "== Docker compose build =="
-            docker-compose build --no-cache
+            docker-compose build
 
             echo "== Docker compose up -d =="
             docker-compose up -d
-
-            echo "== Clean unused images =="
-            docker image prune -f
