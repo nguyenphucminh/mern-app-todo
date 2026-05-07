@@ -15,7 +15,15 @@ mongoose.set('strictQuery', true);
 
 //middlewares
 app.use(express.json())
-app.use(cors())
+// app.use(cors())
+// nếu có config nginx
+app.use(cors({
+    origin: [
+        "https://todo.123ngon.xyz",
+        "http://todo.123ngon.xyz"
+    ],
+    credentials: true
+}))
 
 //db config
 const mongoURI = process.env.MONGO_URI || "mongodb://localhost:27017/todo-app"
